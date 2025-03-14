@@ -15,6 +15,7 @@ import {
   Heading,
   Center,
   Spinner,
+  Text,
 } from "@chakra-ui/react";
 
 import useEntityCustomEvents from "../hooks/useEntityCustomEvents";
@@ -46,15 +47,21 @@ const PluginContext: React.FC = () => {
 
   return (
     <>
-      <Heading as='h1' size='lg' mb={4}>
+      <Heading as='h1' size='lg' mb={0}>
         Hooks Demo
       </Heading>
+      <Text mb={4} fontSize='sm' color='gray.500'>
+        <i>
+          This component demonstrates how to use hooks to fetch data from the Cortex API. It will show the plugin context,
+          and if present, the entity descriptor, custom data, and custom events for the current entity.
+        </i>
+      </Text>
       <Accordion allowToggle allowMultiple>
         {context && (
           <AccordionItem>
             <AccordionButton>
               <Box as='span' flex='1' textAlign='left'>
-                Entity Context JSON
+                Plugin Context
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -67,7 +74,7 @@ const PluginContext: React.FC = () => {
           <AccordionItem>
             <AccordionButton>
               <Box as='span' flex='1' textAlign='left'>
-                Entity Descriptor JSON
+                Entity Descriptor
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -76,11 +83,11 @@ const PluginContext: React.FC = () => {
             </AccordionPanel>
           </AccordionItem>
         )}
-        {customEvents && (
+        {customEvents?.length > 0 && (
           <AccordionItem>
             <AccordionButton>
               <Box as='span' flex='1' textAlign='left'>
-                Custom Events JSON
+                Custom Events
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -89,11 +96,11 @@ const PluginContext: React.FC = () => {
             </AccordionPanel>
           </AccordionItem>
         )}
-        {customData && (
+        {customData?.length > 0 && (
           <AccordionItem>
             <AccordionButton>
               <Box as='span' flex='1' textAlign='left'>
-                Custom Data JSON
+                Custom Data
               </Box>
               <AccordionIcon />
             </AccordionButton>
@@ -102,11 +109,11 @@ const PluginContext: React.FC = () => {
             </AccordionPanel>
           </AccordionItem>
         )}
-        {customDataDict && (
+        {customDataDict && Object.keys(customDataDict).length > 0 && (
           <AccordionItem>
             <AccordionButton>
               <Box as='span' flex='1' textAlign='left'>
-                Custom Data as Dictionary JSON
+                Custom Data as Dictionary
               </Box>
               <AccordionIcon />
             </AccordionButton>
